@@ -58,15 +58,21 @@ void CClientUIInterface::NotifyBlockTip(bool b, const CBlockIndex* i) { return g
 void CClientUIInterface::NotifyHeaderTip(bool b, const CBlockIndex* i) { return g_ui_signals.NotifyHeaderTip(b, i); }
 void CClientUIInterface::BannedListChanged() { return g_ui_signals.BannedListChanged(); }
 
+void InitLogger(const std::string& str, FILE* file)
+{
+    fprintf(file, "%s\n", str);
+}
 
 bool InitError(const std::string& str)
 {
+    InitLogger(str, stderr);
     uiInterface.ThreadSafeMessageBox(str, "", CClientUIInterface::MSG_ERROR);
     return false;
 }
 
 void InitWarning(const std::string& str)
 {
+    InitLogger(str, stdout);
     uiInterface.ThreadSafeMessageBox(str, "", CClientUIInterface::MSG_WARNING);
 }
 
