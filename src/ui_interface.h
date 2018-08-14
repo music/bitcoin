@@ -120,6 +120,9 @@ public:
     ADD_SIGNALS_DECL_WRAPPER(BannedListChanged, void, void);
 };
 
+/** Route messages to stdout/stderr for debugging **/
+void InitLogger(const std::string& str);
+
 /** Show warning message **/
 void InitWarning(const std::string& str);
 
